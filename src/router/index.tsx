@@ -6,6 +6,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+    index: true,
   },
   {
     path: '/search/:query',
