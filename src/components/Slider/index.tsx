@@ -33,42 +33,14 @@ const StyledSlider = styled(Slider)({
   },
 });
 
-const marks = [
-  {
-    value: 1,
-    label: 3,
-  },
-  {
-    value: 2,
-    label: 6,
-  },
-  {
-    value: 3,
-    label: 9,
-  },
-  {
-    value: 4,
-    label: 12,
-  },
-  {
-    value: 5,
-    label: 15,
-  },
-  {
-    value: 6,
-    label: 50,
-  },
-];
-
 const CustomSlider = ({ ...props }: SliderProps) => {
   return (
     <StyledSlider
-      defaultValue={2}
       step={1}
       min={1}
       max={6}
       valueLabelDisplay="off"
-      marks={marks}
+      marks={[]}
       sx={{ color: 'common.white' }}
       {...props}
     />

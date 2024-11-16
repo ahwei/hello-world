@@ -18,7 +18,12 @@ const Layout = () => {
   return (
     <RootBox>
       {isMobile ? <MobileNavbar /> : <DesktopNavbar />}
-      <Box sx={{ marginLeft: isMobile ? 0 : 80, padding: 3 }}>
+      <Box
+        sx={{
+          width: '100%',
+          padding: 3,
+        }}
+      >
         <Outlet />
       </Box>
     </RootBox>

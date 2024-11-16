@@ -15,6 +15,15 @@ const theme = createTheme({
       300: '#D9D9D9',
     },
   },
+  components: {
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        },
+      },
+    },
+  },
 });
 
 export default theme;

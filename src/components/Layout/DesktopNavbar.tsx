@@ -13,13 +13,13 @@ const DesktopNavbar = () => {
   return (
     <Box
       sx={{
-        width: 80,
+        width: '80px',
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: '#222',
-        padding: 2,
+        padding: 3,
       }}
     >
       <Box sx={{ mt: 1, mb: 1 }}>
