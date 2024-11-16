@@ -72,7 +72,14 @@ const Home = () => {
         />
       </Box>
 
-      <Box sx={{ marginTop: 'auto', width: '100%' }}>
+      <Box
+        sx={{
+          marginTop: 'auto',
+          width: '100%',
+          justifyContent: { xs: 'center', sm: 'flex-start' },
+          display: 'flex',
+        }}
+      >
         <ButtonLarge>SEARCH</ButtonLarge>
       </Box>
     </Box>
