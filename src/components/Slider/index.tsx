@@ -2,21 +2,22 @@ import type { SliderProps } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 
+interface Props extends SliderProps {
+  value: number;
+}
+
 const StyledSlider = styled(Slider)({
-  color: 'grey.300',
   '& .MuiSlider-track': {
     background: 'linear-gradient(to right,#FF5C01, #FFD25F )',
     border: 'none',
     height: 8,
   },
   '& .MuiSlider-markLabel': {
-    color: 'white',
+    color: 'grey',
   },
+  '& .MuiSlider-markLabelActive': { color: 'white' },
   '& .MuiSlider-mark': {
     display: 'none',
-  },
-  '& .MuiSlider-valueLabel': {
-    display: 'none', // 隱藏 hover 時的數值標籤
   },
   '& .MuiSlider-thumb': {
     color: '#FFD25F',
@@ -33,15 +34,24 @@ const StyledSlider = styled(Slider)({
   },
 });
 
-const CustomSlider = ({ ...props }: SliderProps) => {
+const CustomSlider = ({ value, ...props }: Props) => {
   return (
     <StyledSlider
       step={1}
       min={1}
       max={6}
+      value={value}
       valueLabelDisplay="off"
-      marks={[]}
-      sx={{ color: 'common.white' }}
+      sx={{
+        color: 'common.white',
+        '& .MuiSlider-markLabel': {
+          color: 'grey',
+        },
+
+        [`& .MuiSlider-markLabel[data-index="${value - 1}"]`]: {
+          color: 'white',
+        },
+      }}
       {...props}
     />
   );
