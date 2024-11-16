@@ -1,8 +1,14 @@
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import AppIcon from './AppIcon';
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/tags', label: 'Tags' },
+];
 
 const MobileNavbar = () => {
+  const location = useLocation();
+
   return (
     <BottomNavigation
       sx={{
@@ -14,20 +20,16 @@ const MobileNavbar = () => {
         zIndex: 1000,
       }}
     >
-      <BottomNavigationAction
-        label="Home"
-        icon={<DashboardIcon />}
-        component={NavLink}
-        to="/"
-        sx={{ color: '#fff' }}
-      />
-      <BottomNavigationAction
-        label="Tags"
-        icon={<DashboardIcon />}
-        component={NavLink}
-        to="/tags"
-        sx={{ color: '#fff' }}
-      />
+      {navItems.map((item) => (
+        <BottomNavigationAction
+          key={item.to}
+          label={item.label}
+          icon={<AppIcon active={location.pathname === item.to} />}
+          component={NavLink}
+          to={item.to}
+          sx={{ color: location.pathname === item.to ? '#fff' : '#888' }}
+        />
+      ))}
     </BottomNavigation>
   );
 };

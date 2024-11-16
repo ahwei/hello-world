@@ -1,8 +1,15 @@
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import { Box } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Box, List, ListItemButton, ListItemText } from '@mui/material';
+import { NavLink, useLocation } from 'react-router-dom';
+import AppIcon from './AppIcon';
+
+const navItems = [
+  { to: '/', label: 'Home' },
+  { to: '/tags', label: 'Tags' },
+];
 
 const DesktopNavbar = () => {
+  const location = useLocation();
+
   return (
     <Box
       sx={{
@@ -12,7 +19,6 @@ const DesktopNavbar = () => {
         flexDirection: 'column',
         alignItems: 'center',
         backgroundColor: '#222',
-        color: '#fff',
         padding: 2,
       }}
     >
@@ -24,32 +30,35 @@ const DesktopNavbar = () => {
           width={50}
         />
       </Box>
-      <NavLink to="/">
-        <Box sx={{ textAlign: 'center', marginBottom: 2 }}>
-          <DashboardIcon sx={{ fontSize: 32 }} />
-          <Box
-            sx={{
-              fontSize: 12,
-              marginTop: 1,
-            }}
-          >
-            Home
-          </Box>
-        </Box>
-      </NavLink>
-      <NavLink to="/tags">
-        <Box sx={{ textAlign: 'center', marginBottom: 2 }}>
-          <DashboardIcon sx={{ fontSize: 32 }} />
-          <Box
-            sx={{
-              fontSize: 12,
-              marginTop: 1,
-            }}
-          >
-            Home
-          </Box>
-        </Box>
-      </NavLink>
+      <List>
+        {navItems.map((item) => {
+          const isActive = location.pathname === item.to;
+          return (
+            <ListItemButton
+              key={item.to}
+              to={item.to}
+              component={NavLink}
+              sx={{
+                flexDirection: 'column',
+                display: 'flex',
+                alignItems: 'center',
+                height: 60,
+                mb: 2,
+              }}
+              disableRipple
+            >
+              <AppIcon active={isActive} />
+              {isActive && (
+                <ListItemText
+                  primary={item.label}
+                  sx={{ fontSize: 10 }}
+                  primaryTypographyProps={{ color: 'white' }}
+                />
+              )}
+            </ListItemButton>
+          );
+        })}
+      </List>
     </Box>
   );
 };
