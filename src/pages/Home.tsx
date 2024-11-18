@@ -1,4 +1,5 @@
 import ButtonLarge from '@/components/Button/ButtonLarge';
+import Follow from '@/components/Follow';
 import Input from '@/components/Input';
 import Slider from '@/components/Slider';
 import { Box, Divider, Typography } from '@mui/material';
@@ -40,47 +41,66 @@ const Home = () => {
         width: '100%',
         height: '100%',
         display: 'flex',
-        flexDirection: 'column',
+        gap: 2,
       }}
     >
-      <Box flexDirection="column" display="flex" gap={4} sx={{ width: '100%' }}>
-        <Typography variant="h4" color="primary">
-          Search
-        </Typography>
-        <Input sx={{ width: '100%' }} placeholder="keyword" />
-        <Divider />
-        <Typography variant="h5" color="primary">
-          # of results per page
-        </Typography>
-        <Box flexDirection="row" display="flex" alignItems="flex-end" gap={1}>
-          <Typography variant="h4" color="primary">
-            {marks.find((mark) => mark.value === resultsPerPage)?.label}
-          </Typography>
-          <Typography variant="body1" color="primary">
-            results
-          </Typography>
-        </Box>
-
-        <Slider
-          value={resultsPerPage}
-          onChange={(_, value) => {
-            if (typeof value === 'number') {
-              setResultsPerPage(value);
-            }
-          }}
-          marks={marks}
-        />
-      </Box>
-
       <Box
         sx={{
-          marginTop: 'auto',
-          width: '100%',
-          justifyContent: { xs: 'center', sm: 'flex-start' },
+          flex: 1,
           display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
-        <ButtonLarge>SEARCH</ButtonLarge>
+        <Box
+          flexDirection="column"
+          display="flex"
+          gap={4}
+          sx={{ maxWidth: 1200, minWidth: 800 }}
+        >
+          <Typography variant="h4" color="primary">
+            Search
+          </Typography>
+          <Input sx={{ width: '100%' }} placeholder="keyword" />
+          <Divider />
+          <Typography variant="h5" color="primary">
+            # of results per page
+          </Typography>
+          <Box flexDirection="row" display="flex" alignItems="flex-end" gap={1}>
+            <Typography variant="h4" color="primary">
+              {marks.find((mark) => mark.value === resultsPerPage)?.label}
+            </Typography>
+            <Typography variant="body1" color="primary">
+              results
+            </Typography>
+          </Box>
+
+          <Slider
+            value={resultsPerPage}
+            onChange={(_, value) => {
+              if (typeof value === 'number') {
+                setResultsPerPage(value);
+              }
+            }}
+            marks={marks}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            marginTop: 'auto',
+            maxWidth: 1200,
+            minWidth: 800,
+            justifyContent: { xs: 'center', sm: 'flex-start' },
+            display: 'flex',
+          }}
+        >
+          <ButtonLarge>SEARCH</ButtonLarge>
+        </Box>
+      </Box>
+      <Box sx={{ width: 375 }}>
+        <Follow />
       </Box>
     </Box>
   );
