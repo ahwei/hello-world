@@ -99,7 +99,15 @@ const Home = () => {
           <ButtonLarge>SEARCH</ButtonLarge>
         </Box>
       </Box>
-      <Box sx={{ width: 375 }}>
+      <Box
+        sx={{
+          width: 375,
+          display: 'none',
+          '@media (min-width: 1440px)': {
+            display: 'block',
+          },
+        }}
+      >
         <Follow />
       </Box>
     </Box>
