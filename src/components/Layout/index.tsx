@@ -23,6 +23,8 @@ const Layout = () => {
         sx={{
           width: '100%',
           padding: 3,
+          height: '100%',
+          overflowY: 'auto',
           marginBottom: isMobile ? '56px' : 0,
         }}
       >
