@@ -2,14 +2,20 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   cssVariables: true,
+  typography: {
+    fontFamily: '"Open Sans", "Helvetica", "Arial", sans-serif',
+  },
   palette: {
+    background: {
+      default: 'rgba(18, 18, 18, 1)',
+    },
     primary: {
       main: '#fff',
-      contrastText: '#000',
+      contrastText: 'rgba(18, 18, 18, 1)',
     },
     secondary: {
       main: '#FF9B33',
-      contrastText: '#000',
+      contrastText: 'rgba(18, 18, 18, 1)',
     },
     grey: {
       300: '#D9D9D9',
