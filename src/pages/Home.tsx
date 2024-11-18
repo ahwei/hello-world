@@ -4,6 +4,7 @@ import Input from '@/components/Input';
 import Slider from '@/components/Slider';
 import { Box, Divider, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const marks = [
   {
@@ -33,6 +34,7 @@ const marks = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const [resultsPerPage, setResultsPerPage] = useState<number>(2);
 
   return (
@@ -96,7 +98,13 @@ const Home = () => {
             display: 'flex',
           }}
         >
-          <ButtonLarge>SEARCH</ButtonLarge>
+          <ButtonLarge
+            onClick={() => {
+              navigate('/search/123');
+            }}
+          >
+            SEARCH
+          </ButtonLarge>
         </Box>
       </Box>
       <Box

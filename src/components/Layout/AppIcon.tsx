@@ -1,5 +1,5 @@
-const activeIconSrc = './icons/active-icon.png';
-const inactiveIconSrc = './icons/inactive-icon.png';
+const activeIconSrc = '/icons/active-icon.png';
+const inactiveIconSrc = '/icons/inactive-icon.png';
 
 const AppIcon = ({ active }: { active?: boolean }) => {
   return (
