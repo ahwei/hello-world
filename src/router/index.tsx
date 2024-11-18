@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import HomePageLayout from '@/components/Layout/HomePageLayout';
 import Home from '@/pages/Home';
 import Search from '@/pages/Search';
 import Tags from '@/pages/Tags';
@@ -10,16 +11,22 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        element: <Home />,
-        index: true,
+        element: <HomePageLayout />,
+        children: [
+          {
+            element: <Home />,
+            index: true,
+          },
+          {
+            path: '/search/:query',
+            element: <Search />,
+          },
+        ],
       },
+
       {
         path: '/tags',
         element: <Tags />,
-      },
-      {
-        path: '/search/:query',
-        element: <Search />,
       },
     ],
   },
