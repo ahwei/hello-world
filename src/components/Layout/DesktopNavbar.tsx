@@ -24,7 +24,7 @@ const DesktopNavbar = () => {
     >
       <Box sx={{ mt: 1, mb: 1 }}>
         <img
-          src="./logo.png"
+          src="/logo.png"
           alt="logo"
           style={{ cursor: 'pointer' }}
           width={50}
