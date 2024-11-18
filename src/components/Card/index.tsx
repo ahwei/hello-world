@@ -5,8 +5,8 @@ const CustomCard = () => {
     <Card sx={{ maxWidth: 345, width: '100%', backgroundColor: 'transparent' }}>
       <CardMedia
         component="img"
-        height="200"
-        width="300"
+        height="146"
+        width="219"
         image="https://via.placeholder.com/219x146"
         alt="green iguana"
       />
