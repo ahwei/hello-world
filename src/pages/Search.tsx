@@ -9,11 +9,15 @@ const Search = () => {
   const [results] = useState<number[]>(new Array(9).fill(0));
 
   return (
-    <Box sx={{ pb: 2 }}>
+    <Box sx={{ pb: 2, maxWidth: 900, position: 'relative' }}>
+      <IconButton
+        color="primary"
+        onClick={() => navigate('/')}
+        sx={{ position: 'absolute', top: 0, left: -40 }}
+      >
+        <ArrowBackIosNewIcon />
+      </IconButton>
       <Box display="flex" flexDirection="row" alignItems="center">
-        <IconButton color="primary" onClick={() => navigate('/')}>
-          <ArrowBackIosNewIcon />
-        </IconButton>
         <Typography variant="h4" color="primary">
           Results
         </Typography>
