@@ -1,11 +1,11 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Environment Variables
+Copy `.env.example` to `.env` and configure the following environment variables:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `VITE_API_BASE_URL`: API base URL, example: `http://localhost:3000/api`
+
 
 ## Expanding the ESLint configuration
 
@@ -49,3 +49,4 @@ export default tseslint.config({
 })
 ```
 # hello-world
+
