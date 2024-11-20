@@ -33,7 +33,6 @@ const Search = () => {
         }
       },
       getNextPageParam: (lastPage) => {
-        // Use the 'page' and 'totalPages' from the Response interface
         if (lastPage.page < lastPage.totalPages) {
           return lastPage.page + 1;
         }
@@ -48,7 +47,7 @@ const Search = () => {
   };
 
   return (
-    <Box sx={{ pb: 2, maxWidth: 900, position: 'relative' }}>
+    <Box sx={{ pb: 2, maxWidth: 900, width: '100%', position: 'relative' }}>
       <IconButton
         color="primary"
         onClick={() => navigate('/')}
@@ -63,7 +62,7 @@ const Search = () => {
         </Typography>
       </Box>
 
-      <Grid2 container spacing={2} sx={{ p: 2 }}>
+      <Grid2 container spacing={2} sx={{ p: 2 }} justifyContent="flex-start">
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
             <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
