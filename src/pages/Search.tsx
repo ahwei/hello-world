@@ -1,5 +1,7 @@
 import ButtonLarge from '@/components/Button/ButtonLarge';
 import CustomCard from '@/components/Card';
+import SkeletonCard from '@/components/Card/SkeletonCard';
+import type { Response, User } from '@/types';
 import axios from '@/utils/axios';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Box, Grid2, IconButton, Typography } from '@mui/material';
@@ -7,33 +9,17 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-interface User {
-  id: string;
-  name: string;
-  username: string;
-  avater: string;
-  isFollowing: boolean;
-}
-
-interface SearchResponse {
-  total: number;
-  totalPages: number;
-  page: number;
-  pageSize: number;
-  data: User[];
-}
-
 const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { keyword, pageSize } = location.state || {};
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useQuery<SearchResponse>({
-    queryKey: ['users'],
+  const { data, isLoading, isFetching } = useQuery<Response<User>>({
+    queryKey: ['users', pageSize, keyword, page],
     queryFn: async () => {
       try {
-        const response = await axios.get<SearchResponse>('/users/all', {
+        const response = await axios.get<Response<User>>('/users/all', {
           params: {
             keyword,
             page,
@@ -53,8 +39,6 @@ const Search = () => {
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);
   };
-
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <Box sx={{ pb: 2, maxWidth: 900, position: 'relative' }}>
@@ -78,6 +62,12 @@ const Search = () => {
             <CustomCard />
           </Grid2>
         ))}
+        {isLoading &&
+          new Array(4).fill(0).map((_, index) => (
+            <Grid2 key={index} size={{ xs: 12, md: 4 }}>
+              <SkeletonCard />
+            </Grid2>
+          ))}
       </Grid2>
 
       <ButtonLarge
