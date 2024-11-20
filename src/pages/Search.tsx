@@ -5,39 +5,46 @@ import type { Response, User } from '@/types';
 import axios from '@/utils/axios';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Box, Grid2, IconButton, Typography } from '@mui/material';
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { keyword, pageSize } = location.state || {};
-  const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching } = useQuery<Response<User>>({
-    queryKey: ['users', pageSize, keyword, page],
-    queryFn: async () => {
-      try {
-        const response = await axios.get<Response<User>>('/users/all', {
-          params: {
-            keyword,
-            page,
-            pageSize,
-          },
-        });
-        return response.data;
-      } catch (error) {
-        console.error(error);
-        throw new Error('Failed to fetch users');
-      }
-    },
-    retry: 1,
-    retryDelay: 1000,
-  });
+  const { data, isLoading, isFetching, fetchNextPage, hasNextPage } =
+    useInfiniteQuery<Response<User>>({
+      initialPageParam: 1,
+      queryKey: ['users', { pageSize, keyword }],
+      queryFn: async ({ pageParam = 1 }) => {
+        try {
+          const response = await axios.get<Response<User>>('/users/all', {
+            params: {
+              keyword,
+              page: pageParam,
+              pageSize,
+            },
+          });
+          return response.data;
+        } catch (error) {
+          console.error(error);
+          throw new Error('Failed to fetch users');
+        }
+      },
+      getNextPageParam: (lastPage) => {
+        // Use the 'page' and 'totalPages' from the Response interface
+        if (lastPage.page < lastPage.totalPages) {
+          return lastPage.page + 1;
+        }
+        return undefined;
+      },
+      retry: 1,
+      retryDelay: 1000,
+    });
 
   const handleLoadMore = () => {
-    setPage((prev) => prev + 1);
+    fetchNextPage();
   };
 
   return (
@@ -57,12 +64,14 @@ const Search = () => {
       </Box>
 
       <Grid2 container spacing={2} sx={{ p: 2 }}>
-        {data?.data?.map((item, index) => (
-          <Grid2 key={index} size={{ xs: 12, md: 4 }}>
-            <CustomCard user={item} />
-          </Grid2>
-        ))}
-        {isLoading &&
+        {data?.pages?.map((pageData, pageIndex) =>
+          pageData.data.map((item, itemIndex) => (
+            <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
+              <CustomCard user={item} />
+            </Grid2>
+          )),
+        )}
+        {(isLoading || isFetching) &&
           new Array(4).fill(0).map((_, index) => (
             <Grid2 key={index} size={{ xs: 12, md: 4 }}>
               <SkeletonCard />
@@ -72,7 +81,7 @@ const Search = () => {
 
       <ButtonLarge
         onClick={handleLoadMore}
-        disabled={isFetching || !data?.pageSize}
+        disabled={isFetching || !hasNextPage}
       >
         {isFetching ? 'Loading...' : 'More'}
       </ButtonLarge>
