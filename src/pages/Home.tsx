@@ -35,6 +35,7 @@ const marks = [
 const Home = () => {
   const navigate = useNavigate();
   const [resultsPerPage, setResultsPerPage] = useState<number>(2);
+  const [keyword, setKeyWord] = useState<string>('');
 
   return (
     <>
@@ -47,7 +48,12 @@ const Home = () => {
         <Typography variant="h4" color="primary">
           Search
         </Typography>
-        <Input sx={{ width: '100%' }} placeholder="keyword" />
+        <Input
+          sx={{ width: '100%' }}
+          placeholder="keyword"
+          value={keyword}
+          onChange={(e) => setKeyWord(e.target.value)}
+        />
         <Divider />
         <Typography variant="h5" color="primary">
           # of results per page
@@ -83,7 +89,13 @@ const Home = () => {
       >
         <ButtonLarge
           onClick={() => {
-            navigate('/search/123');
+            navigate('/search', {
+              state: {
+                keyword,
+                pageSize: marks.find((mark) => mark.value == resultsPerPage)
+                  ?.label,
+              },
+            });
           }}
         >
           SEARCH
