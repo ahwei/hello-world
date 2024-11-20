@@ -59,7 +59,7 @@ const Search = () => {
       <Grid2 container spacing={2} sx={{ p: 2 }}>
         {data?.data?.map((item, index) => (
           <Grid2 key={index} size={{ xs: 12, md: 4 }}>
-            <CustomCard />
+            <CustomCard user={item} />
           </Grid2>
         ))}
         {isLoading &&
