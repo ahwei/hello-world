@@ -73,3 +73,42 @@ jobs:
         run: pnpm lint
 
  
+  run_code_review:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Set up Node.js
+          uses: actions/setup-node@v2
+          with:
+            node-version: 18
+
+        - name: Install pnpm
+          run: npm install -g pnpm
+
+        - name: Get pnpm store directory path
+          id: pnpm-store-dir-path
+          run: echo "::set-output name=dir::$(pnpm store path)"
+
+        - name: Cache pnpm dependencies
+          uses: actions/cache@v2
+          with:
+            path: ${{ steps.pnpm-store-dir-path.outputs.dir }}
+            key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+            restore-keys: |
+              ${{ runner.os }}-pnpm-
+
+        - name: Install dependencies
+          run: pnpm install
+        
+        - name: Install Dependencies
+          run: pnpm install --shamefully-hoist
+  
+        - name: Code Review GPT
+          uses: mattzcarey/code-review-gpt@v0.1.8
+          with:
+            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+            MODEL: 'gpt-4o-mini'
+            GITHUB_TOKEN: ${{ github.token }}
+ 
