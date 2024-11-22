@@ -1,6 +1,7 @@
+import type { ITag } from '@/types';
 import { Box, Typography } from '@mui/material';
 
-const Tag = () => {
+const Tag = ({ item }: { item: ITag }) => {
   return (
     <Box>
       <Box
@@ -8,7 +9,6 @@ const Tag = () => {
           width: 150,
           height: 150,
           background: 'rgba(255,255,255,0.06)',
-
           p: 1,
         }}
         display="flex"
@@ -34,19 +34,19 @@ const Tag = () => {
               whiteSpace: 'nowrap',
             }}
           >
-            Tag12313222
+            {item.name}
           </Typography>
         </Box>
       </Box>
       <Typography variant="body1" color="primary">
-        Cool
+        {item.name}
       </Typography>
       <Typography
         variant="caption"
         color="primary"
         sx={{ fontSize: 10, color: '#B2B2B2' }}
       >
-        350 Results
+        {item.count} Results
       </Typography>
     </Box>
   );
