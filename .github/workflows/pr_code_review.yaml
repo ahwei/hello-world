@@ -1,0 +1,82 @@
+name: Code Review with GPT
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  code-review:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Extract Diff
+      run: |
+        git fetch origin main
+        git diff origin/main > diff.txt
+
+    - name: Verify Diff Content
+      run: |
+        echo "Diff Content:"
+        cat diff.txt
+
+    - name: Call GPT API
+      id: call_gpt
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      run: |
+        DIFF=$(cat diff.txt)
+        if [ -z "$DIFF" ]; then
+          echo "No diff to process. Exiting."
+          exit 0
+        fi
+
+        # JSON escape the DIFF content
+        ESCAPED_DIFF=$(echo "$DIFF" | jq -Rsa .)
+
+        RESPONSE=$(curl -s -X POST https://api.openai.com/v1/chat/completions \
+          -H "Authorization: Bearer $OPENAI_API_KEY" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "model": "gpt-4o-mini",
+            "messages": [
+              {"role": "system", "content": "You are a code review assistant. Provide feedback in Markdown format."},
+              {"role": "user", "content": '"$ESCAPED_DIFF"'}
+            ]
+          }')
+
+        echo "API Response: $RESPONSE"
+        COMMENT=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
+        if [ -z "$COMMENT" ] || [ "$COMMENT" == "null" ]; then
+          echo "No valid comment received from API."
+          exit 1
+        fi
+
+        # Write the comment to a file
+        echo "$COMMENT" > review_comment.md
+
+    - name: Debug Comment Content
+      run: |
+        echo "Generated Comment:"
+        cat review_comment.md
+
+    - name: Load Comment into Environment
+      id: load_comment
+      run: |
+        COMMENT=$(cat review_comment.md)
+        echo "comment<<EOF" >> $GITHUB_ENV
+        echo "$COMMENT" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+      
+    - name: Post Review Comment
+      uses: thollander/actions-comment-pull-request@v1
+      with:
+        message: |
+          **GPT Code Review Results:**
+          ${{ env.comment }}
