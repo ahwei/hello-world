@@ -5,6 +5,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import FollowerCard from './FollowerCard';
+import FollowerCardSkeleton from './FollowerCardSkeleton';
 interface Props {
   sourceType?: 'Followers' | 'Following';
 }
@@ -50,16 +51,17 @@ const InfiniteFollower = ({ sourceType = 'Followers' }: Props) => {
   }, [fetchNextPage, hasNextPage, inView]);
 
   return (
-    <Box sx={{ flex: 1, p: 2 }} gap={2}>
+    <Box sx={{ flex: 1, p: 2 }}>
       {data?.pages?.map((pageData, pageIndex) =>
         pageData.data.map((item, itemIndex) => (
           <FollowerCard key={`${pageIndex}-${itemIndex}`} item={item} />
         )),
       )}
 
-      {(isFetching || isLoading) && (
-        <Box sx={{ color: 'common.white' }}>Fetching...</Box>
-      )}
+      {(isFetching || isLoading) &&
+        new Array(10)
+          .fill(0)
+          .map((_, index) => <FollowerCardSkeleton key={index} />)}
 
       {!isFetching && !isLoading && <Box ref={ref} />}
     </Box>

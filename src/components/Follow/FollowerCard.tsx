@@ -14,6 +14,7 @@ const FollowerCard = ({ item }: FollowerCardProps) => {
       position="relative"
       width="100%"
       height={45}
+      sx={{ mb: 2 }}
     >
       <Box>
         <Avatar
@@ -39,7 +40,10 @@ const FollowerCard = ({ item }: FollowerCardProps) => {
         </Box>
       </Box>
       <Box>
-        <ButtonNormal variant={item?.isFollowing ? 'contained' : 'outlined'}>
+        <ButtonNormal
+          variant={item?.isFollowing ? 'contained' : 'outlined'}
+          sx={{ fontSize: 10 }}
+        >
           {item?.isFollowing ? 'Following' : 'Follow'}
         </ButtonNormal>
       </Box>
