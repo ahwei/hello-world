@@ -1,6 +1,7 @@
 import { Box, Tab, Tabs } from '@mui/material';
 import { ReactNode, SyntheticEvent, useState } from 'react';
-import FollowerCard from './FollowerCard';
+import InfiniteFollower from './InfiniteFollower';
+
 interface TabPanelProps {
   children?: ReactNode;
   index: number;
@@ -16,11 +17,14 @@ const CustomTabPanel = (props: TabPanelProps) => {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      gap={2}
       {...other}
-      sx={{ height: '100%', overflowY: 'auto' }}
+      sx={{
+        height: '100%',
+        overflowY: 'auto',
+        flexDirection: 'column',
+      }}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && children}
     </Box>
   );
 };
@@ -71,21 +75,14 @@ export const Follow = () => {
         sx={{
           flex: 1,
           overflow: 'hidden',
+          height: '100%',
         }}
       >
         <CustomTabPanel value={value} index={0}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {new Array(20).fill(null).map((_, index) => (
-              <FollowerCard key={index} isFollowing={Math.random() < 0.5} />
-            ))}
-          </Box>
+          <InfiniteFollower />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {new Array(10).fill(null).map((_, index) => (
-              <FollowerCard key={index} isFollowing={Math.random() < 0.5} />
-            ))}
-          </Box>
+          <InfiniteFollower sourceType="Following" />
         </CustomTabPanel>
       </Box>
     </Box>

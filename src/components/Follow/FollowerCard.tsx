@@ -1,11 +1,11 @@
 import ButtonNormal from '@/components/Button/ButtonNormal';
+import type { User } from '@/types';
 import { Avatar, Box, Typography } from '@mui/material';
-
 interface FollowerCardProps {
-  isFollowing?: boolean;
+  item?: User;
 }
 
-const FollowerCard = ({ isFollowing }: FollowerCardProps) => {
+const FollowerCard = ({ item }: FollowerCardProps) => {
   return (
     <Box
       display="flex"
@@ -14,6 +14,7 @@ const FollowerCard = ({ isFollowing }: FollowerCardProps) => {
       position="relative"
       width="100%"
       height={45}
+      sx={{ mb: 2 }}
     >
       <Box>
         <Avatar
@@ -31,16 +32,19 @@ const FollowerCard = ({ isFollowing }: FollowerCardProps) => {
           left={55}
         >
           <Typography variant="body1" color="white" sx={{ mt: -0.125 }}>
-            FullName
+            {item?.name}
           </Typography>
           <Typography variant="body2" color="white" sx={{ opacity: 0.5 }}>
-            @username
+            {item?.username}
           </Typography>
         </Box>
       </Box>
       <Box>
-        <ButtonNormal variant={isFollowing ? 'contained' : 'outlined'}>
-          {isFollowing ? 'Following' : 'Follow'}
+        <ButtonNormal
+          variant={item?.isFollowing ? 'contained' : 'outlined'}
+          sx={{ fontSize: 10 }}
+        >
+          {item?.isFollowing ? 'Following' : 'Follow'}
         </ButtonNormal>
       </Box>
     </Box>
