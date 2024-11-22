@@ -6,6 +6,12 @@ export interface User {
   isFollowing: boolean;
 }
 
+export interface ITag {
+  id: string;
+  name: string;
+  count: number;
+}
+
 export interface Response<T> {
   total: number;
   totalPages: number;
