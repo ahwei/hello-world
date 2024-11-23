@@ -1,10 +1,10 @@
-import { Box, List, ListItemButton, ListItemText } from '@mui/material';
+import { Badge, Box, List, ListItemButton, ListItemText } from '@mui/material';
 import { NavLink, useLocation } from 'react-router-dom';
 import AppIcon from './AppIcon';
 
 const navItems = [
   { to: '/', label: 'Home' },
-  { to: '/tags', label: 'Tags' },
+  { to: '/tags', label: 'Tags', badge: true },
 ];
 
 const DesktopNavbar = () => {
@@ -22,12 +22,13 @@ const DesktopNavbar = () => {
         padding: 3,
       }}
     >
-      <Box sx={{ mt: 1, mb: 1 }}>
+      <Box sx={{ mt: '22px', mb: '22px' }}>
         <img
           src="/logo.png"
           alt="logo"
           style={{ cursor: 'pointer' }}
-          width={50}
+          width={35}
+          height={15}
         />
       </Box>
       <List>
@@ -43,16 +44,21 @@ const DesktopNavbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 height: 60,
-                mb: 2,
+                mb: '22px',
               }}
               disableRipple
             >
-              <AppIcon active={isActive} />
+              <Badge
+                variant="dot"
+                invisible={!item.badge}
+                sx={{ '& .MuiBadge-dot': { backgroundColor: '#00D1FF' } }}
+              >
+                <AppIcon active={isActive} />
+              </Badge>
               {isActive && (
                 <ListItemText
                   primary={item.label}
-                  sx={{ fontSize: 10 }}
-                  primaryTypographyProps={{ color: 'white' }}
+                  primaryTypographyProps={{ color: 'white', fontSize: '12px' }}
                 />
               )}
             </ListItemButton>
