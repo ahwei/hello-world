@@ -21,6 +21,7 @@ const HomePageLayout = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           overflowY: 'auto',
+          paddingTop: '50px',
         }}
       >
         <Outlet />

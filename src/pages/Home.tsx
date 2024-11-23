@@ -34,7 +34,7 @@ const marks = [
 
 const Home = () => {
   const navigate = useNavigate();
-  const [resultsPerPage, setResultsPerPage] = useState<number>(2);
+  const [resultsPerPage, setResultsPerPage] = useState<number>(5);
   const [keyword, setKeyWord] = useState<string>('');
 
   return (
@@ -42,24 +42,29 @@ const Home = () => {
       <Box
         flexDirection="column"
         display="flex"
-        gap={4}
         sx={{ maxWidth: 1200, minWidth: 800 }}
       >
-        <Typography variant="h4" color="primary">
+        <Typography variant="h4" color="primary" sx={{ mb: '20px' }}>
           Search
         </Typography>
         <Input
-          sx={{ width: '100%' }}
+          sx={{ width: '100%', mb: '30px' }}
           placeholder="keyword"
           value={keyword}
           onChange={(e) => setKeyWord(e.target.value)}
         />
-        <Divider />
-        <Typography variant="h5" color="primary">
+        <Divider sx={{ mb: '30px' }} />
+        <Typography variant="h5" color="primary" sx={{ mb: '30px' }}>
           # of results per page
         </Typography>
-        <Box flexDirection="row" display="flex" alignItems="flex-end" gap={1}>
-          <Typography variant="h4" color="primary">
+        <Box
+          flexDirection="row"
+          display="flex"
+          alignItems="flex-end"
+          gap={1}
+          sx={{ mb: '20px' }}
+        >
+          <Typography variant="h2" color="primary" sx={{ fontWeight: 700 }}>
             {marks.find((mark) => mark.value === resultsPerPage)?.label}
           </Typography>
           <Typography variant="body1" color="primary">
