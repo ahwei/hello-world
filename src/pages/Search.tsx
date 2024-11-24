@@ -6,12 +6,16 @@ import axios from '@/utils/axios';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Box, Grid2, IconButton, Typography } from '@mui/material';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { keyword, pageSize } = location.state || {};
+
+  if (!pageSize) {
+    return <Navigate to="/" replace />;
+  }
 
   const { data, isLoading, isFetching, fetchNextPage, hasNextPage } =
     useInfiniteQuery<Response<User>>({
@@ -58,11 +62,16 @@ const Search = () => {
 
       <Box display="flex" flexDirection="row" alignItems="center">
         <Typography variant="h4" color="primary">
-          Results for: {keyword}
+          Results
         </Typography>
       </Box>
 
-      <Grid2 container spacing={2} sx={{ p: 2 }} justifyContent="flex-start">
+      <Grid2
+        container
+        spacing={2}
+        sx={{ pt: '24px' }}
+        justifyContent="flex-start"
+      >
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
             <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
