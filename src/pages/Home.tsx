@@ -42,7 +42,10 @@ const Home = () => {
       <Box
         flexDirection="column"
         display="flex"
-        sx={{ maxWidth: 1200, minWidth: 800 }}
+        sx={{
+          maxWidth: 1200,
+          minWidth: { xs: '100%', sm: 800 },
+        }}
       >
         <Typography variant="h4" color="primary" sx={{ mb: '20px' }}>
           Search

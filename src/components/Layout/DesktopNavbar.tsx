@@ -58,7 +58,10 @@ const DesktopNavbar = () => {
               {isActive && (
                 <ListItemText
                   primary={item.label}
-                  primaryTypographyProps={{ color: 'white', fontSize: '12px' }}
+                  primaryTypographyProps={{
+                    color: 'white',
+                    fontSize: '12px',
+                  }}
                 />
               )}
             </ListItemButton>

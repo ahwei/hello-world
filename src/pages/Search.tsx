@@ -70,7 +70,8 @@ const Search = () => {
         container
         spacing={2}
         sx={{ pt: '24px' }}
-        justifyContent="flex-start"
+        justifyContent={{ xs: 'center', sm: 'flex-start' }}
+        alignItems="center"
       >
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
