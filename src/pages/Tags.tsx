@@ -33,14 +33,18 @@ const Tags = () => {
       justifyContent="center"
       sx={{ p: 3, pt: { xs: '70px', sm: 0 }, pb: { xs: '70px', sm: 0 } }}
     >
-      <Box sx={{ pb: 2, maxWidth: 900, position: 'relative' }}>
+      <Box sx={{ pb: 2, maxWidth: 850, position: 'relative' }}>
         <Box
           display="flex"
           flexDirection="row"
           alignItems="center"
-          sx={{ mb: 3, mt: 2 }}
+          sx={{ mb: 3, mt: { xs: 2, sm: 10 } }}
         >
-          <Typography variant="h5" color="primary">
+          <Typography
+            variant="h5"
+            color="primary"
+            sx={{ fontSize: { sm: 30 } }}
+          >
             Tags
           </Typography>
         </Box>

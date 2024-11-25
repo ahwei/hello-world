@@ -1,7 +1,7 @@
 import ButtonLarge from '@/components/Button/ButtonLarge';
 import Input from '@/components/Input';
 import Slider from '@/components/Slider';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -100,7 +100,6 @@ const Home = () => {
           marks={marks}
         />
       </Box>
-      <Divider sx={{ backgroundColor: 'white' }} />
       <Box
         sx={{
           marginTop: 'auto',
@@ -108,13 +107,14 @@ const Home = () => {
           width: '100%',
           justifyContent: { xs: 'center', sm: 'flex-start' },
           display: 'flex',
-          pb: (theme) => theme.spacing(2),
+          pb: {
+            xs: (theme) => theme.spacing(6),
+            sm: 8,
+          },
         }}
       >
         <ButtonLarge
-          sx={{
-            mt: (theme) => theme.spacing(7),
-          }}
+          sx={{}}
           onClick={() => {
             navigate('/search', {
               state: {
