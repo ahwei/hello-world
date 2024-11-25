@@ -51,7 +51,7 @@ const InfiniteFollower = ({ sourceType = 'Followers' }: Props) => {
   }, [fetchNextPage, hasNextPage, inView]);
 
   return (
-    <Box sx={{ flex: 1, p: 2 }}>
+    <Box sx={{ flex: 1, p: 2, pt: '32px' }}>
       {data?.pages?.map((pageData, pageIndex) =>
         pageData.data.map((item, itemIndex) => (
           <FollowerCard key={`${pageIndex}-${itemIndex}`} item={item} />

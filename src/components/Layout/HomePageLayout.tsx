@@ -20,7 +20,11 @@ const HomePageLayout = () => {
           flexDirection: 'column',
           justifyContent: 'space-between',
           alignItems: 'center',
+          overflow: 'hidden',
           overflowY: 'auto',
+          padding: { xs: 3 },
+          paddingBottom: { xs: '70px' },
+          paddingTop: { xs: '70px' },
         }}
       >
         <Outlet />

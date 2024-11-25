@@ -6,12 +6,16 @@ import axios from '@/utils/axios';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Box, Grid2, IconButton, Typography } from '@mui/material';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { keyword, pageSize } = location.state || {};
+
+  if (!pageSize) {
+    return <Navigate to="/" replace />;
+  }
 
   const { data, isLoading, isFetching, fetchNextPage, hasNextPage } =
     useInfiniteQuery<Response<User>>({
@@ -51,18 +55,29 @@ const Search = () => {
       <IconButton
         color="primary"
         onClick={() => navigate('/')}
-        sx={{ position: 'absolute', top: 0, left: -40 }}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: -40,
+          display: { xs: 'none', sm: 'block' },
+        }}
       >
         <ArrowBackIosNewIcon />
       </IconButton>
 
       <Box display="flex" flexDirection="row" alignItems="center">
         <Typography variant="h4" color="primary">
-          Results for: {keyword}
+          Results
         </Typography>
       </Box>
 
-      <Grid2 container spacing={2} sx={{ p: 2 }} justifyContent="flex-start">
+      <Grid2
+        container
+        spacing={2}
+        sx={{ pt: '24px' }}
+        justifyContent={{ xs: 'center', sm: 'flex-start' }}
+        alignItems="center"
+      >
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
             <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
