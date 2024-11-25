@@ -27,11 +27,15 @@ const MobileNavbar = () => {
           )}
           {location.pathname !== '/' && (
             <>
-              <IconButton color="primary" onClick={() => navigate('/')}>
+              <IconButton
+                color="primary"
+                onClick={() => navigate('/')}
+                sx={{ p: 0, mr: 1 }}
+              >
                 <ArrowBackIosNewIcon />
               </IconButton>
               <Typography
-                variant="h4"
+                variant="h5"
                 component="div"
                 color="primary"
                 sx={{ flexGrow: 1 }}

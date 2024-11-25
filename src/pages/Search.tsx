@@ -51,7 +51,9 @@ const Search = () => {
   };
 
   return (
-    <Box sx={{ pb: 2, maxWidth: 900, width: '100%', position: 'relative' }}>
+    <Box
+      sx={{ pb: 2, maxWidth: 900, width: '100%', position: 'relative', pt: 2 }}
+    >
       <IconButton
         color="primary"
         onClick={() => navigate('/')}
@@ -66,7 +68,7 @@ const Search = () => {
       </IconButton>
 
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography variant="h4" color="primary">
+        <Typography variant="h5" color="primary">
           Results
         </Typography>
       </Box>
@@ -80,7 +82,11 @@ const Search = () => {
       >
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
-            <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
+            <Grid2
+              key={`${pageIndex}-${itemIndex}`}
+              size={{ xs: 12, md: 4 }}
+              sx={{ mb: (theme) => theme.spacing(3) }}
+            >
               <CustomCard user={item} />
             </Grid2>
           )),
