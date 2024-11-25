@@ -28,7 +28,11 @@ const Tags = () => {
   });
 
   return (
-    <Box display="flex" justifyContent="center" sx={{ pt: 3 }}>
+    <Box
+      display="flex"
+      justifyContent="center"
+      sx={{ p: 3, pt: { xs: '70px', sm: 0 }, pb: { xs: '70px', sm: 0 } }}
+    >
       <Box sx={{ pb: 2, maxWidth: 900, position: 'relative' }}>
         <Box
           display="flex"
@@ -42,13 +46,13 @@ const Tags = () => {
         </Box>
         <Grid2 container spacing={2} sx={{ p: 2 }}>
           {data?.map((item, itemIndex) => (
-            <Grid2 key={`${itemIndex}`} size={{ xs: 2, md: 12 / 5 }}>
+            <Grid2 key={`${itemIndex}`} size={{ xs: 6, md: 12 / 5 }}>
               <Tag item={item} />
             </Grid2>
           ))}
           {isLoading &&
             new Array(15).fill(0).map((_, index) => (
-              <Grid2 key={`${index}`} size={{ xs: 2, md: 12 / 5 }}>
+              <Grid2 key={`${index}`} size={{ xs: 6, md: 12 / 5 }}>
                 <SkeletonTag />
               </Grid2>
             ))}
