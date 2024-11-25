@@ -18,23 +18,12 @@ const MobileNavbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(
-    'location.pathname',
-    location.pathname,
-    location.pathname !== '/',
-  );
   return (
     <>
       <AppBar sx={{ backgroundColor: 'common.black' }}>
         <Toolbar>
           {location.pathname == '/' && (
-            <img
-              src="/logo.png"
-              alt="logo"
-              style={{ cursor: 'pointer' }}
-              width={35}
-              height={15}
-            />
+            <img src="/logo.png" alt="logo" width={35} height={15} />
           )}
           {location.pathname !== '/' && (
             <>
@@ -53,28 +42,32 @@ const MobileNavbar = () => {
           )}
         </Toolbar>
       </AppBar>
-
-      <BottomNavigation
-        sx={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: '#222',
-          zIndex: 1000,
-        }}
-      >
-        {navItems.map((item) => (
-          <BottomNavigationAction
-            key={item.to}
-            label={item.label}
-            icon={<AppIcon active={location.pathname === item.to} />}
-            component={NavLink}
-            to={item.to}
-            sx={{ color: location.pathname === item.to ? '#fff' : '#888' }}
-          />
-        ))}
-      </BottomNavigation>
+      {location.pathname == '/' && (
+        <BottomNavigation
+          sx={{
+            position: 'fixed',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            backgroundColor: '#222',
+            zIndex: 1000,
+          }}
+        >
+          {navItems.map((item) => (
+            <BottomNavigationAction
+              key={item.to}
+              label={item.label}
+              icon={<AppIcon active={location.pathname === item.to} />}
+              component={NavLink}
+              to={item.to}
+              sx={{
+                color: location.pathname === item.to ? '#fff' : '#888',
+                maxWidth: '50px',
+              }}
+            />
+          ))}
+        </BottomNavigation>
+      )}
     </>
   );
 };
