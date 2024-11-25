@@ -55,7 +55,12 @@ const Search = () => {
       <IconButton
         color="primary"
         onClick={() => navigate('/')}
-        sx={{ position: 'absolute', top: 0, left: -40 }}
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: -40,
+          display: { xs: 'none', sm: 'block' },
+        }}
       >
         <ArrowBackIosNewIcon />
       </IconButton>

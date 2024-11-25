@@ -24,6 +24,7 @@ const HomePageLayout = () => {
           overflowY: 'auto',
           padding: { xs: 3 },
           paddingBottom: { xs: '70px' },
+          paddingTop: { xs: '70px' },
         }}
       >
         <Outlet />

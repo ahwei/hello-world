@@ -25,23 +25,34 @@ const MobileNavbar = () => {
   );
   return (
     <>
-      {location.pathname !== '/' && (
-        <AppBar sx={{ backgroundColor: 'common.black' }}>
-          <Toolbar>
-            <IconButton color="primary" onClick={() => navigate('/')}>
-              <ArrowBackIosNewIcon />
-            </IconButton>
-            <Typography
-              variant="h4"
-              component="div"
-              color="primary"
-              sx={{ flexGrow: 1 }}
-            >
-              Home page
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      )}
+      <AppBar sx={{ backgroundColor: 'common.black' }}>
+        <Toolbar>
+          {location.pathname == '/' && (
+            <img
+              src="/logo.png"
+              alt="logo"
+              style={{ cursor: 'pointer' }}
+              width={35}
+              height={15}
+            />
+          )}
+          {location.pathname !== '/' && (
+            <>
+              <IconButton color="primary" onClick={() => navigate('/')}>
+                <ArrowBackIosNewIcon />
+              </IconButton>
+              <Typography
+                variant="h4"
+                component="div"
+                color="primary"
+                sx={{ flexGrow: 1 }}
+              >
+                Home page
+              </Typography>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
 
       <BottomNavigation
         sx={{
