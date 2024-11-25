@@ -51,22 +51,31 @@ const Search = () => {
   };
 
   return (
-    <Box sx={{ pb: 2, maxWidth: 900, width: '100%', position: 'relative' }}>
+    <Box
+      sx={{
+        p: 3,
+        maxWidth: 750,
+        width: '100%',
+        position: 'relative',
+        pt: { xs: 0, sm: 9 },
+      }}
+    >
       <IconButton
         color="primary"
         onClick={() => navigate('/')}
         sx={{
           position: 'absolute',
-          top: 0,
-          left: -40,
+          top: '70px',
+          left: '-20px',
           display: { xs: 'none', sm: 'block' },
+          fontSize: 20,
         }}
       >
         <ArrowBackIosNewIcon />
       </IconButton>
 
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Typography variant="h4" color="primary">
+        <Typography variant="h5" color="primary" sx={{ fontSize: { sm: 30 } }}>
           Results
         </Typography>
       </Box>
@@ -74,19 +83,23 @@ const Search = () => {
       <Grid2
         container
         spacing={2}
-        sx={{ pt: '24px' }}
+        sx={{ pt: { xs: 6, sm: 3.5 } }}
         justifyContent={{ xs: 'center', sm: 'flex-start' }}
         alignItems="center"
       >
         {data?.pages?.map((pageData, pageIndex) =>
           pageData.data.map((item, itemIndex) => (
-            <Grid2 key={`${pageIndex}-${itemIndex}`} size={{ xs: 12, md: 4 }}>
+            <Grid2
+              key={`${pageIndex}-${itemIndex}`}
+              size={{ xs: 12, md: 4 }}
+              sx={{ mb: { xs: 3, sm: 0 } }}
+            >
               <CustomCard user={item} />
             </Grid2>
           )),
         )}
         {(isLoading || isFetching) &&
-          new Array(4).fill(0).map((_, index) => (
+          new Array(pageSize).fill(0).map((_, index) => (
             <Grid2 key={index} size={{ xs: 12, md: 4 }}>
               <SkeletonCard />
             </Grid2>

@@ -8,6 +8,7 @@ const CustomCard = ({ user }: { user: User }) => {
         maxWidth: { sm: 345, xs: '100%' },
         width: '100%',
         backgroundColor: 'transparent',
+        boxShadow: 'none',
       }}
     >
       <CardMedia
@@ -25,10 +26,15 @@ const CustomCard = ({ user }: { user: User }) => {
         sx={{ display: { sm: 'none', xs: 'block' } }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" color="primary">
+        <Typography
+          gutterBottom
+          variant="h5"
+          sx={{ fontSize: 15 }}
+          color="primary"
+        >
           {user.name}
         </Typography>
-        <Typography variant="body2" sx={{ color: '#B2B2B2' }}>
+        <Typography variant="body2" sx={{ color: '#B2B2B2', fontSize: 11.175 }}>
           {user.username}
         </Typography>
       </CardContent>

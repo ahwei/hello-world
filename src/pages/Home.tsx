@@ -1,7 +1,7 @@
 import ButtonLarge from '@/components/Button/ButtonLarge';
 import Input from '@/components/Input';
 import Slider from '@/components/Slider';
-import { Box, Divider, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -43,29 +43,44 @@ const Home = () => {
         flexDirection="column"
         display="flex"
         sx={{
-          maxWidth: 1200,
-          minWidth: { xs: '100%', sm: 800 },
+          maxWidth: 700,
+          width: '100%',
+          mt: { xs: 0, sm: 6 },
         }}
       >
-        <Typography variant="h4" color="primary" sx={{ mb: '20px' }}>
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{ mb: (theme) => theme.spacing(3) }}
+        >
           Search
         </Typography>
         <Input
-          sx={{ width: '100%', mb: '30px' }}
+          sx={{
+            width: '100%',
+            mb: {
+              xs: 2.5,
+              sm: 4.5,
+            },
+          }}
           placeholder="keyword"
           value={keyword}
           onChange={(e) => setKeyWord(e.target.value)}
         />
-        <Divider sx={{ mb: '30px' }} />
-        <Typography variant="h5" color="primary" sx={{ mb: '30px' }}>
-          # of results per page
+
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{ mb: (theme) => theme.spacing(1.5) }}
+        >
+          # Of results per page
         </Typography>
         <Box
           flexDirection="row"
           display="flex"
           alignItems="flex-end"
           gap={1}
-          sx={{ mb: '20px' }}
+          sx={{ mb: (theme) => theme.spacing(1) }}
         >
           <Typography variant="h2" color="primary" sx={{ fontWeight: 700 }}>
             {marks.find((mark) => mark.value === resultsPerPage)?.label}
@@ -85,17 +100,21 @@ const Home = () => {
           marks={marks}
         />
       </Box>
-
       <Box
         sx={{
           marginTop: 'auto',
-          maxWidth: 1200,
-          minWidth: 800,
+          maxWidth: 700,
+          width: '100%',
           justifyContent: { xs: 'center', sm: 'flex-start' },
           display: 'flex',
+          pb: {
+            xs: (theme) => theme.spacing(6),
+            sm: 8,
+          },
         }}
       >
         <ButtonLarge
+          sx={{}}
           onClick={() => {
             navigate('/search', {
               state: {

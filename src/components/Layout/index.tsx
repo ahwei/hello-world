@@ -22,7 +22,6 @@ const Layout = () => {
       <Box
         sx={{
           width: '100%',
-          padding: { xs: 0, sm: 3 },
           height: '100%',
           overflowY: 'auto',
         }}

@@ -22,7 +22,7 @@ const HomePageLayout = () => {
           alignItems: 'center',
           overflow: 'hidden',
           overflowY: 'auto',
-          padding: { xs: 3 },
+          padding: { xs: 3, sm: 2 },
           paddingBottom: { xs: '70px' },
           paddingTop: { xs: '70px' },
         }}

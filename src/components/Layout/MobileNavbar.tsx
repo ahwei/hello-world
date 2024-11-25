@@ -20,18 +20,22 @@ const MobileNavbar = () => {
 
   return (
     <>
-      <AppBar sx={{ backgroundColor: 'common.black' }}>
-        <Toolbar>
+      <AppBar sx={{ backgroundColor: 'common.black', boxShadow: 'none' }}>
+        <Toolbar sx={{ height: 70, p: 3 }}>
           {location.pathname == '/' && (
             <img src="/logo.png" alt="logo" width={35} height={15} />
           )}
           {location.pathname !== '/' && (
             <>
-              <IconButton color="primary" onClick={() => navigate('/')}>
+              <IconButton
+                color="primary"
+                onClick={() => navigate('/')}
+                sx={{ p: 0, mr: 1 }}
+              >
                 <ArrowBackIosNewIcon />
               </IconButton>
               <Typography
-                variant="h4"
+                variant="h5"
                 component="div"
                 color="primary"
                 sx={{ flexGrow: 1 }}

@@ -13,6 +13,7 @@ const Input = ({ sx, ...props }: TextFieldProps) => {
             color: 'common.white',
             '& fieldset': {
               borderColor: 'grey.300',
+              borderWidth: '3px',
             },
             '&:hover fieldset': {
               borderColor: 'grey.300',
