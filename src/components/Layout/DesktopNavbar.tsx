@@ -22,7 +22,7 @@ const DesktopNavbar = () => {
         padding: 3,
       }}
     >
-      <Box sx={{ mt: '22px', mb: '22px' }}>
+      <Box sx={{ mt: 1.5, mb: 2.5 }}>
         <img
           src="/logo.png"
           alt="logo"
@@ -44,7 +44,7 @@ const DesktopNavbar = () => {
                 display: 'flex',
                 alignItems: 'center',
                 height: 60,
-                mb: '22px',
+                mb: 2,
               }}
               disableRipple
             >

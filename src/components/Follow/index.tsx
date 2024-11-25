@@ -43,6 +43,7 @@ export const Follow = () => {
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        pt: 1,
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -67,8 +68,8 @@ export const Follow = () => {
             },
           }}
         >
-          <Tab label="Followers" value={0} />
-          <Tab label="Following" value={1} />
+          <Tab label="Followers" value={0} sx={{ fontWeight: 'bold' }} />
+          <Tab label="Following" value={1} sx={{ fontWeight: 'bold' }} />
         </Tabs>
       </Box>
       <Box

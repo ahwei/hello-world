@@ -43,8 +43,9 @@ const Home = () => {
         flexDirection="column"
         display="flex"
         sx={{
-          maxWidth: 1200,
-          minWidth: { xs: '100%', sm: 800 },
+          maxWidth: 700,
+          width: '100%',
+          mt: { xs: 0, sm: 6 },
         }}
       >
         <Typography
@@ -57,7 +58,10 @@ const Home = () => {
         <Input
           sx={{
             width: '100%',
-            mb: (theme) => theme.spacing(2.5),
+            mb: {
+              xs: 2.5,
+              sm: 4.5,
+            },
           }}
           placeholder="keyword"
           value={keyword}
@@ -100,8 +104,8 @@ const Home = () => {
       <Box
         sx={{
           marginTop: 'auto',
-          maxWidth: 1200,
-          minWidth: 800,
+          maxWidth: 700,
+          width: '100%',
           justifyContent: { xs: 'center', sm: 'flex-start' },
           display: 'flex',
           pb: (theme) => theme.spacing(2),
