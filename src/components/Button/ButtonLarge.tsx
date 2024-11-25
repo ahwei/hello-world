@@ -14,10 +14,10 @@ const ButtonLarge = ({ children, ...props }: Props) => {
       variant="contained"
       sx={(theme) => ({
         borderRadius: '4px',
-        gap: 10,
         width: 335,
-        padding: '13px 16px',
-        fontSize: '14px',
+        padding: '8px',
+        fontSize: '12px',
+        fontWeight: '1000',
         '&:hover': {
           backgroundColor: theme.palette.common.black,
           color: theme.palette.primary.main,

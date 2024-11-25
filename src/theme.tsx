@@ -20,6 +20,9 @@ const theme = createTheme({
     grey: {
       300: '#D9D9D9',
     },
+    common: {
+      black: '#181818',
+    },
   },
   components: {
     MuiDivider: {

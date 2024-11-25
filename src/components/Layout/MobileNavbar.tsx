@@ -20,8 +20,8 @@ const MobileNavbar = () => {
 
   return (
     <>
-      <AppBar sx={{ backgroundColor: 'common.black' }}>
-        <Toolbar>
+      <AppBar sx={{ backgroundColor: 'common.black', boxShadow: 'none' }}>
+        <Toolbar sx={{ height: 70, p: 3 }}>
           {location.pathname == '/' && (
             <img src="/logo.png" alt="logo" width={35} height={15} />
           )}

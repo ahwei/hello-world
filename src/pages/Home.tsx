@@ -47,25 +47,36 @@ const Home = () => {
           minWidth: { xs: '100%', sm: 800 },
         }}
       >
-        <Typography variant="h4" color="primary" sx={{ mb: '20px' }}>
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{ mb: (theme) => theme.spacing(3) }}
+        >
           Search
         </Typography>
         <Input
-          sx={{ width: '100%', mb: '30px' }}
+          sx={{
+            width: '100%',
+            mb: (theme) => theme.spacing(2.5),
+          }}
           placeholder="keyword"
           value={keyword}
           onChange={(e) => setKeyWord(e.target.value)}
         />
-        <Divider sx={{ mb: '30px' }} />
-        <Typography variant="h5" color="primary" sx={{ mb: '30px' }}>
-          # of results per page
+
+        <Typography
+          variant="h5"
+          color="primary"
+          sx={{ mb: (theme) => theme.spacing(1.5) }}
+        >
+          # Of results per page
         </Typography>
         <Box
           flexDirection="row"
           display="flex"
           alignItems="flex-end"
           gap={1}
-          sx={{ mb: '20px' }}
+          sx={{ mb: (theme) => theme.spacing(1) }}
         >
           <Typography variant="h2" color="primary" sx={{ fontWeight: 700 }}>
             {marks.find((mark) => mark.value === resultsPerPage)?.label}
@@ -85,7 +96,7 @@ const Home = () => {
           marks={marks}
         />
       </Box>
-
+      <Divider sx={{ backgroundColor: 'white' }} />
       <Box
         sx={{
           marginTop: 'auto',
@@ -93,9 +104,13 @@ const Home = () => {
           minWidth: 800,
           justifyContent: { xs: 'center', sm: 'flex-start' },
           display: 'flex',
+          pb: (theme) => theme.spacing(2),
         }}
       >
         <ButtonLarge
+          sx={{
+            mt: (theme) => theme.spacing(7),
+          }}
           onClick={() => {
             navigate('/search', {
               state: {
