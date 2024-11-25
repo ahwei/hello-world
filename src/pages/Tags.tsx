@@ -38,13 +38,13 @@ const Tags = () => {
           display="flex"
           flexDirection="row"
           alignItems="center"
-          sx={{ mb: 3 }}
+          sx={{ mb: 3, mt: 2 }}
         >
-          <Typography variant="h4" color="primary">
+          <Typography variant="h5" color="primary">
             Tags
           </Typography>
         </Box>
-        <Grid2 container spacing={2} sx={{ p: 2 }}>
+        <Grid2 container spacing={2}>
           {data?.map((item, itemIndex) => (
             <Grid2 key={`${itemIndex}`} size={{ xs: 6, md: 12 / 5 }}>
               <Tag item={item} />

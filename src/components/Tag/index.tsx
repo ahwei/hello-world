@@ -10,6 +10,7 @@ const Tag = ({ item }: { item: ITag }) => {
           height: 150,
           background: 'rgba(255,255,255,0.06)',
           p: 1,
+          borderRadius: '4px',
         }}
         display="flex"
         justifyContent="flex-start"
@@ -38,13 +39,23 @@ const Tag = ({ item }: { item: ITag }) => {
           </Typography>
         </Box>
       </Box>
-      <Typography variant="body1" color="primary">
+      <Typography
+        variant="body1"
+        color="primary"
+        sx={{
+          fontSize: 14.9,
+          mt: 1,
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+        }}
+      >
         {item.name}
       </Typography>
       <Typography
         variant="caption"
         color="primary"
-        sx={{ fontSize: 10, color: '#B2B2B2' }}
+        sx={{ fontSize: 11.175, color: '#B2B2B2' }}
       >
         {item.count} Results
       </Typography>

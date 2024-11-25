@@ -76,7 +76,7 @@ const Search = () => {
       <Grid2
         container
         spacing={2}
-        sx={{ pt: '24px' }}
+        sx={{ pt: 6 }}
         justifyContent={{ xs: 'center', sm: 'flex-start' }}
         alignItems="center"
       >
